@@ -1,0 +1,24 @@
+`timescale 1ms/1ms //?????????
+
+module top_tb;
+    	reg clk;
+	reg rst;
+	wire[2:0] light_s;
+	wire[2:0] light_w;   
+	initial begin
+		rst=0;
+		#1000 rst=1;//??????·
+		#150000 rst=0;//150????
+end
+	always 	begin
+		clk=1;
+		#500 clk<=~clk;//????0.5s??
+	end
+    top U1(
+        .clk(clk),
+	.rst(rst),
+        .light_s(light_s),
+        .light_w(light_w)
+        );//????????
+
+endmodule
