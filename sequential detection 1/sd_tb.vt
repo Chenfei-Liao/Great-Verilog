@@ -1,0 +1,35 @@
+`timescale 1ms/1ms
+module sd_tb;
+reg clk=1;
+reg rst_n=1;
+reg a;
+wire match;
+always begin
+	#5 clk=~clk;
+end
+
+initial begin
+	rst_n=0;
+	a=0;
+	#10 
+	rst_n=1;
+	#10
+	a=1;
+	#30
+	a=0;
+	#30
+	a=1;
+	#10
+	a=0;
+
+end
+
+sd U1(
+	.clk(clk),
+	.rst_n(rst_n),
+	.a(a),
+	.match(match)
+);
+endmodule
+
+
