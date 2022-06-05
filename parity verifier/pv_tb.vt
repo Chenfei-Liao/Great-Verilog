@@ -1,0 +1,11 @@
+`timescale 1ms/1ms
+module pv_tb;
+reg [7:0] data_in=78;
+wire x;
+wire y;
+pv U(
+.data_in(data_in),
+.x(x),
+.y(y)
+);
+endmodule
