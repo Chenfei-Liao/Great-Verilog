@@ -1,0 +1,27 @@
+`timescale 1ms/1ms
+module sc1_tb;
+reg clk=1;
+reg rst_n=1;
+reg set=0;
+reg [3:0] set_num=0;
+wire zero;
+wire [3:0] number;
+initial begin
+
+#100 set=1;
+set_num=12;
+#50 set=0;
+#5000 $stop;
+end
+always begin
+#5 clk=~clk;
+end
+sc1 U (
+.clk(clk),
+.rst_n(rst_n),
+.set(set),
+.set_num(set_num),
+.zero(zero),
+.number(number)
+);
+endmodule
