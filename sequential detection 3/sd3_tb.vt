@@ -1,0 +1,32 @@
+`timescale 1ms/1ms
+module sd3_tb;
+reg clk;
+reg rst_n;
+reg data;
+wire match;
+wire not_match;
+initial begin
+clk=1;
+rst_n=0;
+data=0;
+#10 rst_n=1;
+#10 data=1;
+#30 data=0;
+#30 data=1;
+#10 data=0;
+#20 data=1;
+#30 $stop;
+end
+always begin
+#5 clk=~clk;
+end
+sd3 U(
+.clk(clk),
+.rst_n(rst_n),
+.data(data),
+.match(match),
+.not_match(not_match)
+);
+endmodule
+
+
