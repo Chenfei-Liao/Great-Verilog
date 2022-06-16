@@ -1,0 +1,17 @@
+`timescale 1ms/1ms
+module jc_tb;
+reg clk=0;
+reg rst_n;
+wire [3:0] Q;
+initial begin
+#1000 $stop;
+end
+always begin
+#5 clk=~clk;
+end
+jc U(
+.clk(clk),
+.rst_n(rst_n),
+.Q(Q)
+);
+endmodule
