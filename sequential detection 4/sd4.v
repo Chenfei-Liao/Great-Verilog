@@ -38,7 +38,7 @@ always@(posedge clk,negedge rst_n)  begin
 if(!rst_n)
 match<=0;
 else if(nstate==E) begin
-if (!data_valid)
+	if (!data_valid) //判断防止match出现超过一个周期长度。
 match<=0;
 else
 match<=1;
