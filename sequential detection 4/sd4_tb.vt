@@ -1,0 +1,49 @@
+`timescale 1ms/1ms
+
+module sd4_tb;
+reg clk=1;
+reg rst_n;
+reg data;
+reg data_valid;
+wire match;
+initial begin
+rst_n=0;
+data=0;
+data_valid=0;
+#10
+rst_n=1;
+data_valid=1;
+#10
+data=1;
+#20
+data=0;
+#10
+data_valid=0;
+#10
+data=1;
+#20
+data=0;
+data_valid=1;
+#10
+data_valid=0;
+#10
+data_valid=1;
+#10
+data=1;
+#20
+data=0;
+#20
+$stop;
+end
+always begin
+#5
+clk=~clk;
+end
+sd4 U(
+.clk(clk),
+.rst_n(rst_n),
+.data(data),
+.data_valid(data_valid),
+.match(match)
+);
+endmodule
