@@ -1,0 +1,35 @@
+`timescale 1ms/1ms
+module tl_tb;
+reg rst_n;
+reg clk=1;
+reg pass_request;
+wire[7:0]clock;
+wire red;
+wire yellow;
+wire green;
+initial begin
+rst_n=0;
+pass_request=0;
+#10
+rst_n=1;
+#50
+pass_request=1;
+#10
+pass_request=0;
+#10000
+$stop;
+end
+always begin
+#5
+clk=~clk;
+end
+tl U(
+.rst_n(rst_n),
+.clk(clk),
+.pass_request(pass_request),
+.clock(clock),
+.red(red),
+.yellow(yellow),
+.green(green)
+);
+endmodule
