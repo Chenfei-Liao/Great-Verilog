@@ -1,0 +1,31 @@
+`timescale 1ms/1ms
+module ml_tb;
+reg clk;
+reg a;
+reg rst=1;
+wire x;
+initial begin
+clk=1;
+a=1;
+#10
+a=1;
+#10
+a=0;
+#10
+a=1;
+#10
+a=0;
+#30
+$stop;
+end
+always begin
+#5
+clk=~clk;
+end
+ml U(
+.clk(clk),
+.a(a),
+.rst(rst),
+.x(x)
+);
+endmodule
